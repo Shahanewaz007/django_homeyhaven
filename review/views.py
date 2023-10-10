@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .forms import RatingForm  
 from hotels.models import Hotel, Review
 
@@ -39,3 +39,9 @@ def update_review(request, hotel_id):
         form = RatingForm()
 
     return render(request, 'update_review.html', {'form': form,})
+
+
+def remove_review(request, review_id):
+    review = get_object_or_404(Review, pk=review_id)
+    review.delete()
+    return redirect('hotel_details', review.hotel.slug, review.hotel.id)
