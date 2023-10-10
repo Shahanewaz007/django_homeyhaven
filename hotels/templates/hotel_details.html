@@ -42,7 +42,7 @@
                                         
                                     </div>
                                     <a href="{% url 'update_rating' hotels.id %}" > <button class="btn btn-primary">Update Review</button></a>
-                                    <a href="{% url 'delete_rating' review.id %}" > <button class="btn btn-primary">Delete Review</button></a>
+                                    <a href="{% url 'delete_rating' review.id %}" > <button class="btn btn-danger">Delete Review</button></a>
                                
                             {% else %}
                                 <a href="{% url 'rating' hotels.id %}"  <button class="btn btn-primary">Give Review</button></a>
