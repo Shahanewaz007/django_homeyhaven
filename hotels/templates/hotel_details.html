@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block body %}
+<section class="section-content padding-y bg">
+    <div class="container">
+
+        <div class="card">
+            <div class="row no-gutters">
+                <aside class="col-md-6">
+                    <article class="gallery-wrap">
+                        <div class="img-big-wrap">
+                            <a href="#"><img src="{{hotels.hotel_image.url}}"></a>
+                        </div> 
+
+                    </article> 
+                </aside>
+                <main class="col-md-6 border-left">
+                    <article class="content-body">
+
+                        <h2 class="title">{{hotels.hotel_name}}</h2>
+
+                        <h4> {{hotels.address}}</h4>
+                        <div class="mb-3">
+                            <var class="price h4"> Per Day Price : {{hotels.price}} $</var>
+                        </div>
+
+                        <h3> Description : </h3>
+                        <p>{{hotels.description}}</p>
+
+
+                        {% if request.user.is_authenticated %}
+                        {% if has_reviewed %}
+                                    <div class="col form-group">
+                                        <label for=""> <h3>Rating</h3>  </label>
+                                        <br>
+                                        {{review.rating}}
+                                    </div>
+                                    <div class="col form-group">
+                                        <label for=""> <h3> Comment </h3> </label>
+                                    </br>
+                                        {{review.comment}}
+                                        
+                                    </div>
+                                    <a href="{% url 'update_rating' hotels.id %}" > <button class="btn btn-primary">Update Review</button></a>
+                               
+                            {% else %}
+                                <a href="{% url 'rating' hotels.id %}"  <button class="btn btn-primary">Give Review</button></a>
+                            {% endif %}
+                        {% else %}
+                            
+                                <a href="" > <button class="btn btn-primary" disabled>Give Review</button></a>
+                            
+                        {% endif %}
+            </div> 
+            </article> 
+            </main> 
+        </div> 
+    </div> 
+    
+ 
+
+    {% endblock body %}

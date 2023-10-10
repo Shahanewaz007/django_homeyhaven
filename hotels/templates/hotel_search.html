@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block body %}
+<div style="height:70%">
+    
+{% if hotels %}
+<div style="padding-left: 400px;">
+    {% for item in hotels %}
+    <div class="card mb-3" style="max-width: 800px;">
+        
+            <div class="row g-0">
+                <div class="col-md-4">
+                    <img src="{{item.hotel_image.url}}" class="img-fluid rounded-start" alt="...">
+                </div>
+                <div class="col-md-8" style="padding-left: 120px; padding-top: 30px;">
+                    <div class="card-body">
+                        <a href="{% url 'hotel_details' item.slug item.id%}" class="title">{{item.hotel_name}}</a>
+                        <p class="card-text">{{item.address}}</p>
+                    </div>
+                </div>
+            </div>
+        
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+
+<div style="text-align:center;">
+    <h1>No hotels found.</h1>
+    
+</div>
+     
+{% endif %}
+</div>
+{% endblock body %}

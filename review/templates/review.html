@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block body %}
+
+<h1 style="text-align: center; padding-bottom: 20px;">Rate Our Service</h1>
+<div style="padding-left: 600px;">
+   
+<form method="post" action="">
+    {% csrf_token %}
+    <div class="col form-group">
+        <label for=""> <h3>Give Rating</h3>  </label>
+        <br>
+        {{form.rating}}
+    </div>
+    <div class="col form-group">
+        <label for=""> <h3> Comment </h3> </label>
+    </br>
+        {{form.comment}}
+        
+    </div>
+    <div class="col form-group" style="padding-top: 10px;">
+    <button type="submit" class="btn btn-primary">Submit Rating</button>
+    </div>
+</form>
+</div>
+<div style="padding-bottom: 200px;">
+</div>
+
+
+{% endblock body %}
