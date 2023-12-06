@@ -19,8 +19,14 @@ def user_login(request):
         user_name = request.POST.get('username')
         password = request.POST.get('password')
         user = authenticate(username=user_name, password=password)
-        login(request, user)
-        return redirect('home')
+        if user is not None:
+            # Authentication successful, log in the user
+            login(request, user)
+            return redirect('home')
+        else:
+            # Authentication failed, handle the error (e.g., show an error message)
+            error_message = "Invalid username or password. Please try again."
+            return render(request, 'signin.html', {'error_message': error_message})
     return render(request, 'signin.html')
 
 

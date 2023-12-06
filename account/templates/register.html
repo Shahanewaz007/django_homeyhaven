@@ -8,6 +8,24 @@
       <header class="mb-4"><h4 class="card-title">Sign up</h4></header>
       <form method="POST">
         {% csrf_token %}
+        {% if form.errors %}
+            <ul>
+                {% for field in form %}
+                    {% for error in field.errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        <!-- Display non-field errors -->
+        {% if form.non_field_errors %}
+            <ul>
+                {% for error in form.non_field_errors %}
+                    <li>{{ error }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
         <div class="form-row">
           <div class="col form-group">
             <label>User Name</label>
